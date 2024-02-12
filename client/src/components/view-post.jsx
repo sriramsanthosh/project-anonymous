@@ -1,0 +1,87 @@
+import AppIcon from "../images/appIcon.svg";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import { useState } from "react";
+
+import {CREATE_COMMENT, RENDERPOST, RENDER_COMMENTS} from "../apis/user";
+
+function ViewPost() {
+    const navigate = useNavigate();
+    const { state } = useLocation();
+    const [no_of_comments, setComments] = useState("");
+    let userData = state.data;
+    let postsData = state.posts;
+    let curr = state.index;
+    let currPostID = postsData[curr]._id; 
+    let commentsOfPost = state.comments;
+
+    function commentHandler(e){
+        e.preventDefault();
+        let commentBox = document.querySelector("#comment");
+        const commentText = commentBox.value;
+        let commentForm = document.querySelector(".comment-form");
+    
+        axios.post(CREATE_COMMENT, {userData, currPostID, commentText}).then(async (res)=>{
+            alert(res.data.message);
+            commentForm.reset();
+        });
+
+        axios.post(RENDERPOST, {userData}).then(async(res)=>{
+            let postsDatas = res.data.post;
+            axios.post(RENDER_COMMENTS, {userData, postsDatas, index: curr}).then(async(res2)=>{
+                navigate("/view-post", {state: {data: userData, posts:postsDatas, index: curr, comments: res2.data.commentArray}})
+            });
+        });
+    }
+
+    return <div>
+    <header>
+        <nav className = "outer-container">
+            <div className="nav-left inner-container outer-container">
+                <div className="inner-container logo-container"><img className='app-icon logo' src={AppIcon} alt="app-icon" /></div>
+                <h1 className="inner-container"> ANONYMOUS</h1>
+            </div>
+            <h1 className="nav-right inner-container">Welcome, {userData.name}</h1>
+        </nav>
+    </header>
+
+    <main >
+            <div className="feed-container"> 
+                <div className="feed-button-container">
+                    <div><button className="feed-button" onClick={() => navigate("/feed", {state: {data: userData, posts:postsData}})}>All Post</button> </div>
+                    <div><button className="feed-button" onClick={() => alert("🚧 Under Development! Feature will be added soon... Stay Tuned 😉")}>Commented Post</button> </div>
+                    <div><button className="feed-button" onClick={() => alert("🏗️ Under Development! Feature will be added soon... Stay Tuned 😉")}>Replied Post</button></div>
+                    <div><button className="feed-button create-post-button"><i class="fa-solid fa-circle-plus"></i> &nbsp; Create Post</button></div>
+                </div>
+
+                <div className="content-container">
+                    <h2>All Post ({postsData.length})</h2>
+
+                    <div className="post-card">
+                        <h2>{postsData[curr].title}</h2>
+                        <p>{postsData[curr].content}</p>
+                        <i><span className="no_of_comments">{commentsOfPost.length}</span> Comments &nbsp; &nbsp; 0 Reply</i>
+                        <h3>Comments</h3>
+
+                        <div className="comments-list">
+                            {commentsOfPost.map((commentObj)=>
+                                <p>{commentObj.name} : {commentObj.content}</p>
+                            )} 
+                        </div>
+                    </div>
+
+                    <form className="comment-form" onSubmit={commentHandler}>
+                        <input className="input-box" type="text" name="" id="comment" placeholder="Type here to add comment..." required/> &nbsp; &nbsp; 
+                        <input type="hidden" name="post" id={postsData[curr].id} />
+                        <button className="continue-button paper-plane" type="submit"  ><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    
+                </div>
+                
+            </div>
+    </main>
+    </div>
+}
+
+export default ViewPost;
