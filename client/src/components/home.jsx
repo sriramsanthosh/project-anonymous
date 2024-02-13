@@ -1,9 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import AppIcon from "../images/appIcon.svg";
 import Rocket from "../images/rocket.svg";
+import axios from "axios";
+const {HOME} = require('../apis/user');
 
 function Home(){
     const navigate = useNavigate();
+
+    axios.get(HOME).then(async(res)=>{
+        console.log(res.data.message);
+    });
+
     return <div className="App HomeApp">
     <header>
       <nav className = "outer-container">

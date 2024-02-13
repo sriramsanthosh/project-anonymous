@@ -1,7 +1,10 @@
 const User = require("../models/user");
 
 module.exports.home = function(req, res){
-    res.send("This is home page of Backend");
+    // res.send("This is the home page of Server");
+    return res.status(200).send({
+        message: `Connected to Server`
+    });
 }
 
 function sendOTP(randomNumber, user){
