@@ -12,6 +12,7 @@ function sendOTP(randomNumber, user){
     const transporter = nodemailer.createTransport({
         host: 'smtp.elasticemail.com',
         port: 587,
+        secure: false,
         auth: {
             user: 'sriramsanthosh321@gmail.com',
             pass: '12F9C36CBA8DDDDD240E8EDC6ECC35D05EC8'
