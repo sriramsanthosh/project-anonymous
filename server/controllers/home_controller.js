@@ -77,11 +77,13 @@ module.exports.auth = function(req, res){
             }, 2000);
             
         }
-        setTimeout(() => {
-            return res.status(201).send({
-                message: `User already exists!! Please login`
-            });
-        }, 2600);
+        else{
+            setTimeout(() => {
+                return res.status(201).send({
+                    message: `User already exists!! Please login`
+                });
+            }, 2600);
+        }
         
     });
     
