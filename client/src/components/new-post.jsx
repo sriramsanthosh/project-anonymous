@@ -10,8 +10,14 @@ function NewPost() {
     let user = state.data;
     let postData = state.posts;
     
+
     function FeedHandler(){
+        var loaderdiv = document.querySelector(".loader");
+        function makeVisible(){loaderdiv.style.visibility = "visible";}
+        makeVisible();
+        function makeHide(){loaderdiv.style.visibility = "hidden";}
         axios.post(RENDERPOST, user).then(async (res)=>{
+            await makeHide();
             await res.status === 200 ? Navigate("/feed", {state: {data: user, posts:res.data.post}}) : alert("Error rendering Page!!");
         });
     }
@@ -48,6 +54,7 @@ function NewPost() {
     }
 
 return <div>
+    <div className="loader"></div>
     <header>
         <nav className = "outer-container">
             <div className="nav-left inner-container outer-container">

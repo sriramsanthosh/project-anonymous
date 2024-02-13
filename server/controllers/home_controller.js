@@ -68,10 +68,14 @@ module.exports.auth = function(req, res){
         if(!user){
             let randomNumber = Math.floor(Math.random()*1000000);
             sendOTP(randomNumber, userData);
-            return res.status(200).send({
-                otp: `${randomNumber}`,
-                user: userData
-            });
+            setTimeout(() => {
+                return res.status(200).send({
+                    otp: `${randomNumber}`,
+                    user: userData
+                });
+                    
+            }, 2000);
+            
         }
         return res.status(201).send({
             message: `User already exists!! Please login`
@@ -104,9 +108,13 @@ module.exports.login = function(req, res){
         
         let randomNumber = Math.floor(Math.random()*1000000);
         sendOTP(randomNumber, user);
-        return res.status(200).send({
-            otp: `${randomNumber}`,
-            user: user
-        });
+
+        setTimeout(() => {
+            return res.status(200).send({
+                otp: `${randomNumber}`,
+                user: user
+            });
+        }, 2000);
+        
     });
 }

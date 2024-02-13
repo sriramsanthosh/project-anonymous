@@ -11,13 +11,21 @@ function Login() {
 
     function loginHandler(e){
         e.preventDefault();
+
+        var loaderdiv = document.querySelector(".loader");
+        function makeVisible(){loaderdiv.style.visibility = "visible";}
+        makeVisible();
+        function makeHide(){loaderdiv.style.visibility = "hidden";}
+
         let userEmail = document.getElementById('email').value;
         axios.post(LOGIN, {userEmail}).then(async (res)=>{
             switch(await res.status){
                 case 200:
+                    await makeHide();
                     Navigate("/login-auth", {state: {data: res.data}}); 
                     break;
                 case 201:
+                    await makeHide();
                     alert(res.data.message);
                     break;
                 default:
@@ -26,6 +34,7 @@ function Login() {
     }
 
     return <div>
+    <div className="loader"></div>
     <header>
       <nav className = "outer-container">
             <div className="nav-left inner-container outer-container">

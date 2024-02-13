@@ -13,6 +13,11 @@ function SignUp() {
     const [email, setEmail] = useState("");
     const SignUpHandler = (e) => {
         e.preventDefault();
+        var loaderdiv = document.querySelector(".loader");
+        function makeVisible(){loaderdiv.style.visibility = "visible";}
+        makeVisible();
+        function makeHide(){loaderdiv.style.visibility = "hidden";}
+
         const newUser = {
             name: name,
             email: email
@@ -20,9 +25,11 @@ function SignUp() {
         axios.post(AUTH, newUser).then(async (res)=>{
             switch(await res.status){
                 case 200:
+                    await makeHide();
                     Navigate("/authenticate", {state: {data: res.data}});
                     break;
                 case 201:
+                    await makeHide();
                     alert(res.data.message);
                     Navigate("/login", {state:{data: res.data}});
                     break;
@@ -32,6 +39,7 @@ function SignUp() {
     }
 
     return <div>
+    <div className="loader"></div>
     <header>
       <nav className = "outer-container">
             <div className="nav-left inner-container outer-container">
