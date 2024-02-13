@@ -1,7 +1,7 @@
 const User = require("../models/user");
 
 module.exports.home = function(req, res){
-    
+    res.send("This is home page of Backend");
 }
 
 function sendOTP(randomNumber, user){
