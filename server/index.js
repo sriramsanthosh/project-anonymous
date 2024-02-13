@@ -8,14 +8,10 @@ const port = process.env.port || 8000;
 
 const db = require('./config/mongoose');
 
-// db();
-app.use(express.static(path.join(__dirname, "../client/build")));
-app.get('*', function(req, res){
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
 
 app.use(express.json({ extended: false }));
 app.use(cors());
+
 app.use("/", require("./routes/index"));
 
 app.listen(port, function(err){
