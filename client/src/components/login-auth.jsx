@@ -11,7 +11,8 @@ function LoginAuth() {
     let {data} = state;
     let userData = data.user;
 
-    console.log(data);
+    // console.log(data);
+    console.log("OTP Sent!!");
 
     function validateOtp(e){
         e.preventDefault();

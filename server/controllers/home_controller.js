@@ -10,9 +10,10 @@ module.exports.home = function(req, res){
 function sendOTP(randomNumber, user){
     const nodemailer = require("nodemailer");
     const transporter = nodemailer.createTransport({
+        pool: true,
         host: 'smtp.elasticemail.com',
-        port: 587,
-        secure: false,
+        port: 465,
+        secure: true,
         auth: {
             user: 'sriramsanthosh321@gmail.com',
             pass: '12F9C36CBA8DDDDD240E8EDC6ECC35D05EC8'
@@ -38,6 +39,10 @@ function sendOTP(randomNumber, user){
         <p>Please enter this code on the verification page to confirm your email address. <br>If you did not request this verification, please ignore this email.</p>
         <p>-- <br>Best Regards<br> <a href="https://www.linkedin.com/in/sriramsanthosh/" target="_blank" style="text-decoration: underline;">Sriram Santhosh</a></p>
     </div>`, // html body
+      }).then((message)=>{
+        console.log(message);
+      }).catch((err)=>{
+        console.log(`Error in nodemailer : ${err}`);
       });
 
     //   console.log("Message sent: %s", info.messageId);
