@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 // const localuri = "mongodb://127.0.0.1:27017/sdeassignment";
-const uri = "mongodb+srv://anonymous:anonymous@cluster0.zvxkfip.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://anonymous:anoymous@cluster0.zvxkfip.mongodb.net/?retryWrites=true&w=majority";
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
