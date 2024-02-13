@@ -11,6 +11,8 @@ function LoginAuth() {
     let {data} = state;
     let userData = data.user;
 
+    console.log(data);
+
     function validateOtp(e){
         e.preventDefault();
         let number = document.getElementById("otp").value;
