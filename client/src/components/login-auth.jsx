@@ -14,6 +14,7 @@ function LoginAuth() {
     function validateOtp(e){
         e.preventDefault();
         let number = document.getElementById("otp").value;
+        console.log(data.otp);
         if(number === data.otp){
             axios.post(RENDERPOST, userData).then(async (res)=>{
                 console.log(res.data);
