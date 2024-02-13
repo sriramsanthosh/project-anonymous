@@ -320,6 +320,10 @@ main{
 }
 
 @media screen and (max-width:407px){
+  body{
+    font-size: small;
+  }
+
   .main-content-heading{
     width: 90%;
     font-size: 43px;

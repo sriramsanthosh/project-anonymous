@@ -29,7 +29,7 @@ function Home(){
         <p>Already have account? <button className="login-button" onClick={() => navigate("/login")}>Login</button></p>
     </main>
     <footer>
-        <div className="author-sign"><span className="orange-color">Made with</span> <i class="fa-solid fa-heart"></i>&nbsp;<a className="author-profile-link" href="https://www.linkedin.com/in/sriramsanthosh/" target="_blank">Sriram&nbsp;Santhosh</a></div>
+        <div className="author-sign"><span className="orange-color">Made with</span> &nbsp;<i class="fa-solid fa-heart"></i>&nbsp; <a className="author-profile-link" href="https://www.linkedin.com/in/sriramsanthosh/" target="_blank">Sriram&nbsp;Santhosh</a></div>
     </footer>
     </div>
 }
