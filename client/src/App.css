@@ -324,5 +324,9 @@ main{
     width: 90%;
     font-size: 43px;
   }
+
+  .india-button-container{
+    padding: 10px;
+  }
 }
 
