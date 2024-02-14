@@ -37,7 +37,11 @@ module.exports.render = async(req, res)=>{
     let comments = posts[curr].comments;
   
     let temp = [];
-
+    if(comments.length === 0){
+        return res.status(200).send({
+            commentArray: temp
+        });
+    }
     if(comments.length>0){
         
         comments.map(async(commentItem, index)=>{
@@ -54,11 +58,7 @@ module.exports.render = async(req, res)=>{
             return res.status(200).send({
                 commentArray: temp
             });       
-        }, 3000);
+        }, 1500);
     }
-    else{
-        return res.status(200).send({
-            commentArray: temp
-        });
-    }
+    
 }

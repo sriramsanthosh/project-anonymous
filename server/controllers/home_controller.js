@@ -65,6 +65,11 @@ module.exports.auth = function(req, res){
     const userData = req.body;
 
     User.findOne({email: userData.email}).then((user)=>{
+        if(user){
+            return res.status(201).send({
+                message: `User already exists!! Please login`
+            });
+        }
         if(!user){
             let randomNumber = Math.floor(Math.random()*1000000);
             sendOTP(randomNumber, userData);
@@ -74,17 +79,9 @@ module.exports.auth = function(req, res){
                     user: userData
                 });
                     
-            }, 2000);
+            }, 1500);
             
-        }
-        else{
-            setTimeout(() => {
-                return res.status(201).send({
-                    message: `User already exists!! Please login`
-                });
-            }, 2600);
-        }
-        
+        } 
     });
     
 }
