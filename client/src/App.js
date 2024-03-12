@@ -18,8 +18,8 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path="/sign-up" element={<SignUp />}/>
+            <Route exact path='/' element={<Home />}/>
+            <Route exact path="/sign-up" element={<SignUp />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/authenticate" element={<Authenticate />}/>
             <Route path="/auth-success" element={<AuthSuccess />}/>
