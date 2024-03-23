@@ -25,7 +25,7 @@ function NewPost() {
         setloader(false);
     }
 
-    function postHandler(e) {
+    async function postHandler(e) {
         e.preventDefault();
         setloader(true);
         let postTiltle = document.querySelector("#post-title").value;
@@ -36,17 +36,17 @@ function NewPost() {
             description: postDescription
         }
 
-        axios.post(NEWPOST, { user, postData }).then(async (res) => {
-            alert(res.data.message);
+        await axios.post(NEWPOST, { user, postData }).then(async (res) => {
+            alert(res.data.message)
         });
 
-        axios.post(RENDERPOST, { user }).then(async (res) => {
+        await axios.post(RENDERPOST, { user }).then(async (res) => {
             switch (await res.status) {
                 case 200:
                     Navigate("/feed", {
                         state: {
-                            data: user,
-                            posts: res.data.post
+                            data: await user,
+                            posts: await res.data.post
                         }
                     });
                     break;
@@ -59,8 +59,8 @@ function NewPost() {
     }
 
     return <div>
-        <MyToastContainer />
         {loader && <LinearIndeterminate />}
+        <MyToastContainer />
         <header>
             <nav className="outer-container">
                 <div className="nav-left inner-container outer-container">

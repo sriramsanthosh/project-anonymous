@@ -41,7 +41,7 @@ function Authenticate() {
 
         }
         else {
-            alert("👻 Wrong OTP!!");
+            toast.error("Wrong OTP !");
         }
         setloader(false);
     }

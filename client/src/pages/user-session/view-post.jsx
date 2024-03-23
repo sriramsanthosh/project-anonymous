@@ -66,10 +66,10 @@ function ViewPost() {
         <main >
             <div className="feed-container">
                 <div className="feed-button-container">
-                    <div><button className="feed-button" onClick={() => navigate("/feed", { state: { data: userData, posts: postsData } })}>All Post</button> </div>
+                    <div><button className="feed-button" onClick={() => {setloader(true); navigate("/feed", { state: { data: userData, posts: postsData } })}}>All Post</button> </div>
                     <div><button className="feed-button" onClick={() => toast.info("Feature will be added soon")}>Commented Post</button></div>
                     <div><button className="feed-button" onClick={() => toast.info("Feature will be added soon")}>Replied Post</button></div>
-                    <div><button className="feed-button create-post-button"><i className="fa-solid fa-circle-plus"></i> &nbsp; Create Post</button></div>
+                    <div><button className="feed-button create-post-button" onClick={() => navigate("/new-post", { state: { data: userData, posts: postsData } })}><i className="fa-solid fa-circle-plus"></i> &nbsp; Create Post</button></div>
                 </div>
 
                 <div className="content-container">

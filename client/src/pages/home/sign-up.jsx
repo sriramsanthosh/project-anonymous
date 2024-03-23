@@ -4,6 +4,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import LinearIndeterminate from "../../components/loaderMUI";
+import { toast } from "react-toastify";
+import MyToastContainer from "../../components/toast-container";
 
 const { AUTH } = require('../../apis/user');
 
@@ -27,6 +29,9 @@ function SignUp() {
             switch (await res.status) {
                 case 200:
                     Navigate("/authenticate", { state: { data: res.data } });
+                    setTimeout(() => {
+                        toast.success("OTP sent to Email");
+                    }, 500);
                     break;
                 case 201:
                     alert(res.data.message);
@@ -40,6 +45,7 @@ function SignUp() {
 
     return <div>
         {loader && <LinearIndeterminate />}
+        <MyToastContainer />
         <div className="loader"></div>
         <header>
             <nav className="outer-container">

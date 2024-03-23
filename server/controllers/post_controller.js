@@ -17,7 +17,7 @@ module.exports.create = async (req, res) => {
 }
 
 module.exports.render = async (req, res) => {
-    await Post.find({}).then(async (posts) => {
+    await Post.find({}).sort({ createdAt: -1 }).then(async (posts) => {
         return res.status(200).send({
             post: await posts
         });

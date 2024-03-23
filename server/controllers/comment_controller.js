@@ -30,7 +30,7 @@ module.exports.render = async (req, res) => {
     let user = await req.body.userData;
     let posts = await req.body.postsDatas;
     let curr = await req.body.index;
-    await Post.find({}).then(async (posts) => {
+    await Post.find({}).sort({ createdAt: -1 }).then(async (posts) => {
         posts = await posts;
     });
 
