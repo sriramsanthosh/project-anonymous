@@ -8,17 +8,20 @@ exports.auth = async (randomCode, userData) => {
             user_email: userData.email,
             user_name: userData.name
         }
-        const [htmlString, sendMailResult] = await Promise.all([
+        const [htmlString] = await Promise.all([
             await nodeMailer.renderTemplate(data, "/auth"),
-            await nodeMailer.transporter.sendMail({
-                from: `"ANONYMOUS-Project 👻" ${await process.env.SMTP_USER_NAME}`,
-                to: await userData.email,
-                subject: "Verify your email",
-                html: await htmlString
-            })
         ]);
+        const [sendingMail] = await Promise.all([
+            await nodeMailer.transporter.sendMail({
+            from: `"ANONYMOUS-Project 👻" ${await process.env.SMTP_USER_NAME}`,
+            to: await userData.email,
+            subject: "Verify your email",
+            html: await htmlString
+        })]).then(()=>{
+            console.log("Email sent successfully!");
+        });
+        
 
-        console.log("Email sent successfully!");
     }
     catch (error) {
         console.log(`Error: `, error);
