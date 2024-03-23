@@ -16,10 +16,12 @@ function LoginAuth() {
         e.preventDefault();
         let number = document.getElementById("otp").value;
         if (number === data.otp) {
-            toast.success("Validation Success");
             await axios.post(RENDERPOST, userData).then(async (res) => {
                 if (res.status === 200) {
                     Navigate("/set-password");
+                    setTimeout(() => {
+                        toast.success("Validation Success");
+                    }, 500);
                 }
                 else {
                     toast.error("Something went wrong.. Try Again!");

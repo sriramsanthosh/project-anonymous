@@ -12,9 +12,9 @@ exports.auth = async (randomCode, userData) => {
             console.log(err);
         });
 
-        nodeMailer.transporter.sendMail({
-            from: `"ANONYMOUS-Project 👻" ${process.env.SMTP_USER_NAME}`,
-            to: userData.email,
+        await nodeMailer.transporter.sendMail({
+            from: `"ANONYMOUS-Project 👻" ${await process.env.SMTP_USER_NAME}`,
+            to: await userData.email,
             subject: "Verify your email",
             html: await htmlString
         }, (err, msg) => {

@@ -23,7 +23,9 @@ const ForgotPassword = () => {
                     break;
                 case 200:
                     Navigate("/login-auth", { state: { data: res.data } });
-                    toast.success(res.data.success_msg);
+                    setTimeout(() => {
+                        toast.success(res.data.success_msg); 
+                    }, 500);
                     break;
                 default:
             }
