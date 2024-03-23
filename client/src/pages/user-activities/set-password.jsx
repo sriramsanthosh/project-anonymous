@@ -4,12 +4,17 @@ import NavBar from "../../components/navbar";
 import Axios from "axios";
 import { RESET_PASSWORD } from "../../apis/user";
 import { useNavigate } from "react-router-dom";
+import LinearIndeterminate from "../../components/loaderMUI";
+import { useState } from "react";
 
 const SetPassword = () => {
 
     const Navigate = useNavigate();
+
+    const [loader, setloader] = useState(false);
     async function validatePassword(e) {
         e.preventDefault();
+        setloader(true);
         let user_id = await localStorage.getItem("user_id");
         if (e.target.newPassword.value === e.target.confirmNewPassword.value) {
             let password = e.target.newPassword.value;
@@ -22,10 +27,12 @@ const SetPassword = () => {
                 toast.error("Error in Backend.. Try Again!");
             });
         }
+        setloader(false);
     }
 
     return (
         <div>
+            {loader && <LinearIndeterminate />}
             <NavBar />
             <ToastContainer position="top-center" autoClose={2000} hideProgressBar theme="colored" />
             <main>

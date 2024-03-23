@@ -4,15 +4,18 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Rocket from "../images/rocket.svg";
 import Axios from "axios";
 import { FORGOT_PASSWORD } from "../../apis/user";
+import LinearIndeterminate from "../../components/loaderMUI";
+import { useState } from "react";
 
 
 
 const ForgotPassword = () => {
-
+    const [loader, setloader] = useState(false);
 
     const Navigate = useNavigate();
     async function handleForgotPassword(e) {
         e.preventDefault();
+        setloader(true);
         const userEmail = document.getElementById("email").value;
         await Axios.post(FORGOT_PASSWORD, { email: await userEmail }).then(async (res) => {
             switch (await res.status) {
@@ -31,12 +34,14 @@ const ForgotPassword = () => {
             }
         }).catch((err) => {
             toast.error("Connection Error.. Backend Database");
-        })
+        });
+        setloader(false);
     }
 
 
     return (
         <div>
+            {loader && <LinearIndeterminate />}
             <div className="loader"></div>
             <NavBar />
             <main>

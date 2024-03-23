@@ -3,6 +3,7 @@ import Rocket from "../images/rocket.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import LinearIndeterminate from "../../components/loaderMUI";
 
 const { AUTH } = require('../../apis/user');
 
@@ -11,15 +12,12 @@ function SignUp() {
     const Navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [isLoding, setLoading] = useState();
+    
+    const [loader, setloader] = useState(false);
 
     const SignUpHandler = async (e) => {
         e.preventDefault();
-        var loaderdiv = document.querySelector(".loader");
-        function makeVisible() { loaderdiv.style.visibility = "visible"; }
-        makeVisible();
-        function makeHide() { loaderdiv.style.visibility = "hidden"; }
-
+        setloader(true);
         const newUser = {
             name: name,
             email: email
@@ -28,20 +26,20 @@ function SignUp() {
         await axios.post(AUTH, newUser).then(async (res) => {
             switch (await res.status) {
                 case 200:
-                    await makeHide();
                     Navigate("/authenticate", { state: { data: res.data } });
                     break;
                 case 201:
-                    await makeHide();
                     alert(res.data.message);
                     Navigate("/login", { state: { data: res.data } });
                     break;
                 default:
             }
         });
+        setloader(false);
     }
 
     return <div>
+        {loader && <LinearIndeterminate />}
         <div className="loader"></div>
         <header>
             <nav className="outer-container">

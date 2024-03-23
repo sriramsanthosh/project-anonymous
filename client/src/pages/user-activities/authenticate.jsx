@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import MyToastContainer from "../../components/toast-container";
 import { useState } from "react";
+import LinearIndeterminate from "../../components/loaderMUI";
 
 function Authenticate() {
     const { state } = useLocation();
@@ -15,8 +16,10 @@ function Authenticate() {
     let userData = data.user;
 
     const [otpValidation, setOtpValidation] = useState(false);
+    const [loader, setloader] = useState(false);
 
     async function handleCreateAccount(e) {
+        setloader(true);
         e.preventDefault();
         let password = document.getElementById("password").value;
         let confirmPassword = document.getElementById("confirm-password").value;
@@ -25,10 +28,12 @@ function Authenticate() {
                 await res.status === 200 ? Navigate("/auth-success", { state: { data: res.data } }) : alert("Error in creating account!!");
             });
         }
+        setloader(false);
     }
 
     function validateOtp(e) {
         e.preventDefault();
+        setloader(true);
         let number = document.getElementById("otp").value;
         if (number === data.otp) {
             toast.success("Validation Success !");
@@ -38,9 +43,11 @@ function Authenticate() {
         else {
             alert("👻 Wrong OTP!!");
         }
+        setloader(false);
     }
 
     return <div>
+        {loader && <LinearIndeterminate />}
         <MyToastContainer />
         <header>
             <nav className="outer-container">

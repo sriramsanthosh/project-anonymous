@@ -4,48 +4,37 @@ import { RENDER_COMMENTS, RENDERPOST } from "../../apis/user";
 import axios from "axios";
 import MyToastContainer from "../../components/toast-container";
 import { toast } from "react-toastify";
-
-
-
+import LinearIndeterminate from "../../components/loaderMUI";
+import { useState } from "react";
 
 function UserFeed() {
     const { state } = useLocation();
     const Navigate = useNavigate();
     let userData = state.data;
     let postsData = state.posts;
+    const [loader, setloader] = useState(false);
 
     const ViewPostHandler = async (e, index) => {
         e.preventDefault();
-        var loaderdiv = document.querySelector(".loader");
-
-        function makeVisible() {
-            loaderdiv.style.visibility = "visible";
-        }
-
-        makeVisible();
-
-        function makeHide() {
-            loaderdiv.style.visibility = "hidden";
-        }
-
-
+        setloader(true);
         await axios.post(RENDERPOST, { userData }).then(async (res) => {
             let postsDatas = await res.data.post;
             console.log("postDatas", postsDatas);
             await axios.post(RENDER_COMMENTS, { userData, postsDatas, index }).then(async (res) => {
                 console.log("resdata", res.data);
-                makeHide();
                 await Navigate("/view-post", { state: await { data: await userData, posts: await postsDatas, index: await index, comments: await res.data.commentArray } })
             });
         });
+
+        setloader(false);
     }
 
 
 
 
     return <div className="feed">
+        {loader && <LinearIndeterminate />}
         <MyToastContainer />
-        <div className="loader"></div>
         <header>
             <nav className="outer-container">
                 <div className="nav-left inner-container outer-container">

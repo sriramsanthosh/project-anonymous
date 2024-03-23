@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { CREATE_COMMENT, RENDERPOST, RENDER_COMMENTS } from "../../apis/user";
 import { toast } from "react-toastify";
 import MyToastContainer from "../../components/toast-container";
+import LinearIndeterminate from "../../components/loaderMUI";
 
 function ViewPost() {
     const navigate = useNavigate();
@@ -19,6 +20,8 @@ function ViewPost() {
     let curr = state.index;
     let currPostID = postsData[curr]._id;
 
+    const [loader, setloader] = useState(false);
+
     useEffect(() => {
         if (state.comments) {
             setCommentsOfPost(state.comments);
@@ -27,6 +30,7 @@ function ViewPost() {
 
     async function commentHandler(e) {
         e.preventDefault();
+        setloader(true);
         let commentBox = document.querySelector("#comment");
         const commentText = commentBox.value;
         let commentForm = document.querySelector(".comment-form");
@@ -42,9 +46,12 @@ function ViewPost() {
                 navigate("/view-post", { state: { data: await userData, posts: await postsDatas, index: await curr, comments: await res2.data.commentArray } })
             });
         });
+
+        setloader(false);
     }
 
     return <div>
+        {loader && <LinearIndeterminate />}
         <MyToastContainer />
         <header>
             <nav className="outer-container">

@@ -5,13 +5,18 @@ import { LOGIN } from "../../apis/user";
 import NavBar from "../../components/navbar";
 import MyToastContainer from "../../components/toast-container";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import LinearIndeterminate from "../../components/loaderMUI";
 
 function Login() {
     const { state } = useLocation();
     const Navigate = useNavigate();
 
+    const [loader, setloader] = useState(false);
+
     async function loginHandler(e) {
         e.preventDefault();
+        setloader(true);
         let userEmail = await document.getElementById('email').value;
         let userPassword = await document.getElementById('password').value;
 
@@ -30,9 +35,11 @@ function Login() {
                 default:
             }
         });
+        setloader(false);
     }
 
     return (<div>
+        {loader && <LinearIndeterminate />}
         <div className="loader"></div>
         <NavBar />
         <main>

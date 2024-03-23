@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import NavBar from "../../components/navbar";
+import LinearIndeterminate from "../../components/loaderMUI";
+import { useState } from "react";
 
 const { RENDERPOST } = require("../../apis/user");
 
@@ -11,9 +13,11 @@ function LoginAuth() {
     const Navigate = useNavigate();
     let { data } = state;
     let userData = data.user;
+    const [loader, setloader] = useState(false);
 
     async function validateOtp(e) {
         e.preventDefault();
+        setloader(true);
         let number = document.getElementById("otp").value;
         if (number === data.otp) {
             await axios.post(RENDERPOST, userData).then(async (res) => {
@@ -31,8 +35,10 @@ function LoginAuth() {
         else {
             toast.error("Wrong OTP!!");
         }
+        setloader(false);
     }
     return <div>
+        {loader && <LinearIndeterminate />}
         <NavBar />
         <ToastContainer position="top-center" autoClose={2000} hideProgressBar theme="colored" />
         <main>

@@ -3,6 +3,8 @@ import AppIcon from "../images/appIcon.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import MyToastContainer from "../../components/toast-container";
+import LinearIndeterminate from "../../components/loaderMUI";
+import { useState } from "react";
 
 const { NEWPOST, RENDERPOST } = require('../../apis/user');
 
@@ -13,19 +15,19 @@ function NewPost() {
     console.log(user);
     let postData = state.posts;
 
-    function FeedHandler() {
-        var loaderdiv = document.querySelector(".loader");
-        function makeVisible() { loaderdiv.style.visibility = "visible"; }
-        makeVisible();
-        function makeHide() { loaderdiv.style.visibility = "hidden"; }
-        axios.post(RENDERPOST, user).then(async (res) => {
-            await makeHide();
+    const [loader, setloader] = useState(false);
+
+    async function FeedHandler() {
+        setloader(true);
+        await axios.post(RENDERPOST, user).then(async (res) => {
             await res.status === 200 ? Navigate("/feed", { state: { data: user, posts: res.data.post } }) : alert("Error rendering Page!!");
         });
+        setloader(false);
     }
 
     function postHandler(e) {
         e.preventDefault();
+        setloader(true);
         let postTiltle = document.querySelector("#post-title").value;
         let postDescription = document.querySelector("#post-description").value;
 
@@ -53,11 +55,12 @@ function NewPost() {
                 default:
             }
         });
+        setloader(false);
     }
 
     return <div>
         <MyToastContainer />
-        <div className="loader"></div>
+        {loader && <LinearIndeterminate />}
         <header>
             <nav className="outer-container">
                 <div className="nav-left inner-container outer-container">

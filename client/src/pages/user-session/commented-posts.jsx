@@ -2,9 +2,11 @@ import { toast } from "react-toastify";
 import MyToastContainer from "../../components/toast-container";
 import AppIcon from "../images/appIcon.svg";
 import { useNavigate } from "react-router-dom";
+import LinearIndeterminate from "../../components/loaderMUI";
 
 function UserCommented() {
     const navigate = useNavigate();
+
     return <div>
         <MyToastContainer />
         <header>
