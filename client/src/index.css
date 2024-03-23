@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   background-color: black;
@@ -8,32 +8,33 @@ body{
   user-select: none;
 }
 
-button{
+button {
   background-color: transparent;
   border: none;
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
 }
 
-input{
+input {
   background-color: transparent;
   color: #8C8C8C;
 }
 
-input:focus, textarea:focus{
+input:focus,
+textarea:focus {
   box-shadow: 1px 1px 1px 5px;
 }
 
 
-.outer-container{
+.outer-container {
   display: flex;
   justify-content: space-between;
   /* margin: auto 20px; */
   flex-wrap: wrap;
 }
 
-textarea{
+textarea {
   resize: none;
 }

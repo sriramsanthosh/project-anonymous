@@ -14,6 +14,7 @@ router.post("/login-auth", postController.render);
 router.get("/login-auth", postController.render);
 router.post("/create-comment", commentController.create);
 router.post("/render-comments", commentController.render);
-
+router.post("/forgot-password", homeController.forgotPassword);
+router.post("/reset-password", homeController.resetPassword);
 
 module.exports = router;

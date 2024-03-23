@@ -1,28 +1,30 @@
 import axios from "axios";
 import AppIcon from "../images/appIcon.svg";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import MyToastContainer from "../../components/toast-container";
 
-const {NEWPOST, RENDERPOST} = require('../apis/user');
+const { NEWPOST, RENDERPOST } = require('../../apis/user');
 
 function NewPost() {
     const Navigate = useNavigate();
     const { state } = useLocation();
     let user = state.data;
+    console.log(user);
     let postData = state.posts;
-    
 
-    function FeedHandler(){
+    function FeedHandler() {
         var loaderdiv = document.querySelector(".loader");
-        function makeVisible(){loaderdiv.style.visibility = "visible";}
+        function makeVisible() { loaderdiv.style.visibility = "visible"; }
         makeVisible();
-        function makeHide(){loaderdiv.style.visibility = "hidden";}
-        axios.post(RENDERPOST, user).then(async (res)=>{
+        function makeHide() { loaderdiv.style.visibility = "hidden"; }
+        axios.post(RENDERPOST, user).then(async (res) => {
             await makeHide();
-            await res.status === 200 ? Navigate("/feed", {state: {data: user, posts:res.data.post}}) : alert("Error rendering Page!!");
+            await res.status === 200 ? Navigate("/feed", { state: { data: user, posts: res.data.post } }) : alert("Error rendering Page!!");
         });
     }
-    
-    function postHandler(e){
+
+    function postHandler(e) {
         e.preventDefault();
         let postTiltle = document.querySelector("#post-title").value;
         let postDescription = document.querySelector("#post-description").value;
@@ -31,13 +33,13 @@ function NewPost() {
             title: postTiltle,
             description: postDescription
         }
-        
-        axios.post(NEWPOST, {user, postData}).then(async (res)=>{
+
+        axios.post(NEWPOST, { user, postData }).then(async (res) => {
             alert(res.data.message);
         });
 
-        axios.post(RENDERPOST, {user}).then(async (res)=>{
-            switch(await res.status){
+        axios.post(RENDERPOST, { user }).then(async (res) => {
+            switch (await res.status) {
                 case 200:
                     Navigate("/feed", {
                         state: {
@@ -53,26 +55,27 @@ function NewPost() {
         });
     }
 
-return <div>
-    <div className="loader"></div>
-    <header>
-        <nav className = "outer-container">
-            <div className="nav-left inner-container outer-container">
-                <div className="inner-container logo-container"><img className='app-icon logo' src={AppIcon} alt="app-icon" /></div>
-                <h1 className="inner-container"> ANONYMOUS</h1>
-            </div>
-            <h1 className="nav-right inner-container">Welcome, {user.name}</h1>
-        </nav>
-    </header>
+    return <div>
+        <MyToastContainer />
+        <div className="loader"></div>
+        <header>
+            <nav className="outer-container">
+                <div className="nav-left inner-container outer-container">
+                    <div className="inner-container logo-container"><img className='app-icon logo' src={AppIcon} alt="app-icon" /></div>
+                    <h1 className="inner-container"> ANONYMOUS</h1>
+                </div>
+                <h1 className="nav-right inner-container">Welcome, {user.name}</h1>
+            </nav>
+        </header>
 
-    <main >
+        <main >
 
             <div className="feed-container">
                 <div className="feed-button-container">
                     <div><button className="feed-button" onClick={FeedHandler}>All Post</button> </div>
-                    <div><button className="feed-button" onClick={() => Navigate("/commented-posts")}>Commented Post</button> </div>
-                    <div><button className="feed-button " onClick={() =>Navigate("/replied-posts")}>Replied Post</button></div>
-                    <div><button className="feed-button create-post-button active" ><i class="fa-solid fa-circle-plus"></i> &nbsp; Create Post</button></div>
+                    <div><button className="feed-button" onClick={() => toast.info("Feature will be added soon")}>Commented Post</button> </div>
+                    <div><button className="feed-button " onClick={() => toast.info("Feature will be added soon")}>Replied Post</button></div>
+                    <div><button className="feed-button create-post-button active" ><i className="fa-solid fa-circle-plus"></i> &nbsp; Create Post</button></div>
                 </div>
 
                 <div className="content-container">
@@ -84,7 +87,7 @@ return <div>
                     </form>
                 </div>
             </div>
-    </main>
+        </main>
     </div>
 }
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>
+</head>
+
+<body>
+    <div class="body" style="font-size: large;">
+        <h2>Dear <%= user_name %>,</h2>
+        <p>Share your thoughts anonymously with others.</p>
+        <p>Thank you for choosing our platform! <br> Please use the following OTP to complete the verification process:
+        </p>
+        <div class="msgcontentContainer"
+            style="margin:auto; text-align: center; border:2px solid lightgray; width: fit-content; padding: 15px 20px; ">
+            <h2>Your OTP Code</h2>
+            <h1 style="letter-spacing: 0.5cm;">
+                <%= randomCode %>
+            </h1>
+        </div>
+        <p>Please enter this code on the verification page to confirm your email address. <br>If you did not request
+            this verification, please ignore this email.</p>
+        <p>-- <br>Best Regards<br> <a href="https://www.linkedin.com/in/sriramsanthosh/" target="_blank"
+                style="text-decoration: underline;">Sriram Santhosh</a></p>
+    </div>
+</body>
+
+</html>

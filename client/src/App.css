@@ -1,25 +1,26 @@
-nav{
+nav {
   margin: auto 15px;
 }
 
 
-header{
+header {
   padding: 10px 0;
 }
-.app-icon{
+
+.app-icon {
   width: 42.22px;
   height: 40px;
 }
 
-.underline{
+.underline {
   text-decoration: underline;
   color: white;
 }
 
-.india-button-container{
+.india-button-container {
   color: white;
   position: relative;
-  border: 1px solid rgb(41,41,41);
+  border: 1px solid rgb(41, 41, 41);
   width: fit-content;
   padding: 10px 25px;
   border-radius: 24px;
@@ -27,46 +28,46 @@ header{
   font-size: medium;
 }
 
-.rocket-icon{
+.home-main-content {
+  margin-top: 60px;
+}
+
+.rocket-icon {
   width: 25px;
   height: 25px;
 }
 
-.india-button-container-text{
+.india-button-container-text {
   padding-left: 5px;
 }
 
-.create-your-account{
-  background-color: rgb(64,64,64);
+.create-your-account {
+  background-color: rgb(64, 64, 64);
   margin-top: 30px;
 }
 
 
-.text-center{
+.text-center {
   text-align: center;
   position: relative;
 }
 
-main{
-  padding-top: 80px;
-}
-
-.main-content-heading{
+.main-content-heading {
   width: 50%;
   margin: auto;
   font-size: 50px;
-  padding: 30px 0; 
+  padding: 30px 0;
 }
 
-.main-content-heading-quote{
+.main-content-heading-quote {
   padding-bottom: 30px;
 }
 
-.create-your-account{
+.create-your-account {
   border: none;
 }
 
-.login-button{
+.login-button {
   color: white;
   border: none;
   font-size: large;
@@ -75,21 +76,21 @@ main{
 
 /* SIgn Up page  */
 
-main{
+main {
   position: relative;
 }
 
-.card{
+.card {
   margin: auto;
   border-radius: 12px;
-  background-color: rgb(25,25,25);
+  background-color: rgb(25, 25, 25);
   text-align: center;
   width: 390px;
   padding: 60px 20px;
   padding-bottom: 90px;
 }
 
-.input-box{
+.input-box {
   border: 1px solid white;
   padding: 15px;
   margin: 5px 0;
@@ -100,15 +101,15 @@ main{
   transition: 0.1s ease-in;
 }
 
-.input-box:focus{
+.input-box:focus {
   outline: none;
 }
 
 
-.continue-button{
+.continue-button {
   padding: 15px;
   color: white;
-  background-color: rgb(64,64,64);
+  background-color: rgb(64, 64, 64);
   margin-top: 20px;
   border-radius: 22px;
   border: none;
@@ -118,7 +119,7 @@ main{
 
 /* OTP Page */
 
-.verify-otp-text{
+.verify-otp-text {
   width: 300px;
 
   margin: auto;
@@ -126,20 +127,20 @@ main{
 
 }
 
-.success-tick-icon{
+.success-tick-icon {
   width: 90px;
 }
 
 
-.logo{
+.logo {
   margin-top: 12px;
 }
 
-.logo-container{
+.logo-container {
   padding: 0 15px;
 }
 
-.feed-container{
+.feed-container {
   color: #8C8C8C;
   display: flex;
   justify-content: space-around;
@@ -147,7 +148,7 @@ main{
   flex-wrap: wrap;
 }
 
-.content-container{
+.content-container {
   padding: 20px 0;
   background-color: #0D0D0D;
   width: 40%;
@@ -157,15 +158,15 @@ main{
   height: 500px;
 }
 
-.post-lists{
+.post-lists {
   overflow-y: scroll;
   height: 420px;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
 
-.feed-button{
+.feed-button {
   color: #8C8C8C;
   background-color: #0d0d0d;
   padding: 15px 40px;
@@ -173,19 +174,19 @@ main{
   border-radius: 8px;
   margin: 10px 0;
   transition: 0.5s ease-in-out;
-  font-size: large;  
+  font-size: large;
   text-align: left;
 }
 
 
-.active{
+.active {
   background-color: #4C4C4C;
   color: white;
   font-weight: bold;
 
 }
 
-.create-post-button{
+.create-post-button {
   border: 1px solid #8C8C8C;
   font-weight: bold;
 }
@@ -193,7 +194,7 @@ main{
 
 
 
-.post-container{
+.post-container {
   color: #8C8C8C;
   background-color: #191919;
   padding: 5px 10px;
@@ -204,18 +205,19 @@ main{
 }
 
 
-.post-container-outer-div{
+.post-container-outer-div {
   position: relative;
   width: 100%;
 }
 
-.new-post-input{
+.new-post-input {
   position: relative;
   width: 100%;
   text-transform: capitalize;
 }
 
-.new-post-input, #post-description{
+.new-post-input,
+#post-description {
   background-color: #191919;
   color: #7E7E7E;
   font-family: sans-serif;
@@ -225,45 +227,45 @@ main{
   border-radius: 8px;
 }
 
-.post-card{
+.post-card {
   background-color: #191919;
   color: #8C8C8C;
   padding: 10px;
   border-radius: 8px;
 }
 
-.content-container{
+.content-container {
   color: white;
 }
 
-.post-submit-button-container{
+.post-submit-button-container {
   text-align: center;
   width: 250px;
   margin: auto;
 }
 
-.new-input-div{
+.new-input-div {
   margin: 15px 0;
 }
 
-.user-name-on-top{
+.user-name-on-top {
   text-transform: capitalize;
 }
 
-.comment-form{
+.comment-form {
   /* position: absolute; */
   bottom: 0;
 }
 
-.paper-plane{
+.paper-plane {
   width: fit-content;
   padding: auto 15px;
   border-radius: 50%;
 }
 
-.loader{
+.loader {
   position: fixed;
-  background: url('./images/preloade.gif');
+  background: url('./pages//images/preloade.gif');
   background-size: 5%;
   background-position: center;
   background-repeat: no-repeat;
@@ -277,15 +279,15 @@ main{
 }
 
 
-.comments-list{
+.comments-list {
   overflow-y: scroll;
   max-height: 250px;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
 
-.author-sign{
+.author-sign {
   margin: auto;
   text-align: center;
   color: white;
@@ -294,43 +296,42 @@ main{
   padding-top: 30px;
 }
 
-.orange-color{
+.orange-color {
   color: orange;
 }
 
-.author-profile-link{
+.author-profile-link {
   color: lightgreen;
 }
 
 
 
-@media screen and (max-width:700px){
-  .content-container{
+@media screen and (max-width:700px) {
+  .content-container {
     margin-top: 20px;
     width: 90%;
   }
 
-  .loader{
+  .loader {
     background-size: 10%;
   }
 
-  .main-content-heading{
+  .main-content-heading {
     width: 80%;
   }
 }
 
-@media screen and (max-width:407px){
-  body{
+@media screen and (max-width:407px) {
+  body {
     font-size: small;
   }
 
-  .main-content-heading{
+  .main-content-heading {
     width: 90%;
     font-size: 43px;
   }
 
-  .india-button-container{
+  .india-button-container {
     padding: 10px;
   }
 }
-
