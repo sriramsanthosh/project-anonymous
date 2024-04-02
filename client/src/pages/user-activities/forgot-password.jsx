@@ -41,7 +41,9 @@ const ForgotPassword = () => {
 
     return (
         <div>
-            {loader && <LinearIndeterminate />}
+            <div style={{height:"8px"}}>
+                {loader && <LinearIndeterminate />}
+            </div>
             <div className="loader"></div>
             <NavBar />
             <main>

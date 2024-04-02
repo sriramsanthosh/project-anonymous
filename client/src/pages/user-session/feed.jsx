@@ -33,7 +33,9 @@ function UserFeed() {
 
 
     return <div className="feed">
-        {loader && <LinearIndeterminate />}
+        <div style={{height:"8px"}}>
+            {loader && <LinearIndeterminate />}
+        </div>
         <MyToastContainer />
         <header>
             <nav className="outer-container">

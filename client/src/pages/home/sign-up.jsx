@@ -44,9 +44,10 @@ function SignUp() {
     }
 
     return <div>
-        {loader && <LinearIndeterminate />}
+        <div style={{height:"8px"}}>
+            {loader && <LinearIndeterminate />}
+        </div>
         <MyToastContainer />
-        <div className="loader"></div>
         <header>
             <nav className="outer-container">
                 <div className="nav-left inner-container outer-container">

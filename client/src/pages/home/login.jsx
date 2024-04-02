@@ -39,8 +39,9 @@ function Login() {
     }
 
     return (<div>
-        {loader && <LinearIndeterminate />}
-        <div className="loader"></div>
+        <div style={{height:"8px"}}>
+            {loader && <LinearIndeterminate />}
+        </div>
         <NavBar />
         <main>
             <MyToastContainer />

@@ -32,7 +32,9 @@ const SetPassword = () => {
 
     return (
         <div>
-            {loader && <LinearIndeterminate />}
+            <div style={{height:"8px"}}>
+                {loader && <LinearIndeterminate />}
+            </div>
             <NavBar />
             <ToastContainer position="top-center" autoClose={2000} hideProgressBar theme="colored" />
             <main>
