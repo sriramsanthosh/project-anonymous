@@ -13,6 +13,7 @@ const ForgotPassword = () => {
     const [loader, setloader] = useState(false);
 
     const Navigate = useNavigate();
+    
     async function handleForgotPassword(e) {
         e.preventDefault();
         setloader(true);
