@@ -11,7 +11,7 @@ exports.auth = async (randomCode, userData) => {
         const [htmlString] = await Promise.all([
             await nodeMailer.renderTemplate(data, "/auth"),
         ]);
-        const [sendingMail] = await Promise.all([
+        await Promise.all([
             await nodeMailer.transporter.sendMail({
             from: `"ANONYMOUS-Project 👻" ${await process.env.SMTP_USER_NAME}`,
             to: await userData.email,
@@ -20,8 +20,6 @@ exports.auth = async (randomCode, userData) => {
         })]).then(()=>{
             console.log("Email sent successfully!");
         });
-        
-
     }
     catch (error) {
         console.log(`Error: `, error);

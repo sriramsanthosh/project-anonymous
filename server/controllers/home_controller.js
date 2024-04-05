@@ -97,13 +97,20 @@ module.exports.forgotPassword = async function (req, res) {
     });
 }
 
-module.exports.resetPassword = async function (req, res) {
-    let password = await req.body.password;
-    let user_id = await req.body.user_id;
-    await User.findByIdAndUpdate(user_id, { password });
-    const updatedUser = await User.findById(user_id);
-    return res.status(200).json({
-        success_msg: "Password Reset Successful!",
-        userData: await updatedUser
-    });
+module.exports.resetPassword = async (req, res) => {
+    try {
+        let user_id = await req.body.user_id;
+        let password = await req.body.password;
+
+        const beforeUpdateUser = await User.findByIdAndUpdate(user_id, { password })
+        const updatedUser = await User.findById(user_id);
+        return res.status(200).json({
+            success_msg: "Password Reset Successful!",
+            userData: await updatedUser
+        });
+    }
+    catch (err) {
+        console.error(err);
+    }
+
 }

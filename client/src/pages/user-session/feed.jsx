@@ -19,9 +19,9 @@ function UserFeed() {
         setloader(true);
         await axios.post(RENDERPOST, { userData }).then(async (res) => {
             let postsDatas = await res.data.post;
-            console.log("postDatas", postsDatas);
+            // console.log("postDatas", postsDatas);
             await axios.post(RENDER_COMMENTS, { userData, postsDatas, index }).then(async (res) => {
-                console.log("resdata", res.data);
+                // console.log("resdata", res.data);
                 await Navigate("/view-post", { state: await { data: await userData, posts: await postsDatas, index: await index, comments: await res.data.commentArray } })
             });
         });

@@ -7,6 +7,7 @@ import MyToastContainer from "../../components/toast-container";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import LinearIndeterminate from "../../components/loaderMUI";
+// import MUIalert from "../../components/muiAlert";
 
 function Login() {
     const { state } = useLocation();
@@ -45,6 +46,7 @@ function Login() {
         <NavBar />
         <main>
             <MyToastContainer />
+            {/* <MUIalert status="success" /> */}
             <div className="card">
                 <img className='rocket-icon single-rocket' src={Rocket} alt="rocket-icon" />
                 <h1>Login to Your Account</h1>

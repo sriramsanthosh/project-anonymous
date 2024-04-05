@@ -12,7 +12,7 @@ function NewPost() {
     const Navigate = useNavigate();
     const { state } = useLocation();
     let user = state.data;
-    console.log(user);
+    // console.log(user);
     let postData = state.posts;
 
     const [loader, setloader] = useState(false);

@@ -22,7 +22,7 @@ function LoginAuth() {
         if (number === data.otp) {
             await axios.post(RENDERPOST, userData).then(async (res) => {
                 if (res.status === 200) {
-                    Navigate("/set-password");
+                    Navigate("/set-password",  { state: { data: userData } });
                     setTimeout(() => {
                         toast.success("Validation Success");
                     }, 500);

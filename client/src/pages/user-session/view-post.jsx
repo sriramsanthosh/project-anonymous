@@ -12,7 +12,7 @@ import LinearIndeterminate from "../../components/loaderMUI";
 function ViewPost() {
     const navigate = useNavigate();
     const { state } = useLocation();
-    console.log("statecomments", state.comments);
+    // console.log("statecomments", state.comments);
     const [commentsOfPost, setCommentsOfPost] = useState([]);
 
     let userData = state.data;
